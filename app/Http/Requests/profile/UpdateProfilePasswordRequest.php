@@ -5,7 +5,7 @@ namespace App\Http\Requests\profile;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rules\Password;
 
-class ProfilePasswordUpdateRequest extends FormRequest
+class UpdateProfilePasswordRequest extends FormRequest
 {
     public function authorize(): bool
     {

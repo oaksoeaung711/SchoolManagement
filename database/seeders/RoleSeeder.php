@@ -12,8 +12,8 @@ class RoleSeeder extends Seeder
     public $roles_and_desciption = [
         "Global Administrator" => "Can manage administrators./Can manage users./Can manage roles./Can manage signs./Can manage timetables./Can create cards./Cannot manage global administrators.",
         "Administrator" => "Can manage users./Can manage signs./Can manage timetables./Can create cards./Cannot manage global administrators and adminsitrators.",
-        "Timetable Manage" => "Can manage timetables.",
-        "Sign Manage" => "Can manage signs.",
+        "Timetable" => "Can manage timetables.",
+        "Teacher" => "Can manage teachers and signs.",
         "Report Card" => "Can create report cards.",
         "Graduation Card" => "Can create graduation certificate cards."
     ];

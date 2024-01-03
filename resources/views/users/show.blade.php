@@ -4,14 +4,14 @@
 <div class="my-2">
     <a href="{{ route('users.index') }}" class="font-bold"><i class="fa-solid fa-chevron-left"></i> Back</a>
 </div>
-<div class="max-w-5xl bg-white bg-no-repeat shadow-lg shadow-slate-300 bg-right-bottom rounded-xl overflow-hidden">
+<div class="max-w-5xl bg-slate-50 bg-no-repeat shadow-lg shadow-slate-300 bg-right-bottom rounded-xl overflow-hidden">
     <div class="flex flex-col md:flex-row p-5 gap-y-10 md:gap-0">
         <div class="w-full md:w-1/2 flex flex-col items-center">
             <div class="overflow-hidden" >
                 @if($user->image === null)
                     <img src="{{ asset('asset/imgs/icons/profile.png') }}" class="w-44 h-44 rounded-full" />
                 @else
-                    <img src="{{ asset('storage/'.$user->image) }}" class="w-44 h-44 rounded-full" />
+                    <img src="{{ asset('storage/profiles/'.$user->image) }}" class="w-44 h-44 rounded-full" />
                 @endif
             </div>
             <div class="mt-5">

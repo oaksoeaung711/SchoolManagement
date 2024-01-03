@@ -13,7 +13,7 @@
         </div>
     </div>
     <div class="relative overflow-x-auto">
-        <table class="w-full text-sm text-left rtl:text-right">
+        <table class="w-full text-sm text-left rtl:text-right bg-slate-50">
             <thead class="text-xs uppercase bg-slate-800 text-slate-50">
                 <tr class="">
                     <th scope="col" class="px-6 py-3">Name</th>
@@ -25,7 +25,7 @@
             </thead>
             <tbody>
                 @foreach ($users as $user)
-                    <tr class="group/list hover:bg-slate-100">
+                    <tr class="group/list hover:bg-slate-100 hover:cursor-default">
                         <td class="px-6 py-4 whitespace-nowrap">{{ $user->firstname }} {{ $user->lastname }}</td>
                         <td class="px-6 py-4 whitespace-nowrap">
                             <a href="{{ route('users.show',$user->id) }}" class="underline underline-offset-2 text-gray-600 hover:text-gray-800 transition-all duration-300">{{ $user->email }}</a>
@@ -50,14 +50,15 @@
                                             </a>
                                             <a
                                                 href="javascript:void(0);"
-                                                class="delete-btn text-rose-500"
+                                                class="text-rose-500"
                                                 delete-name="{{ $user->firstname }} {{ $user->lastname }}"
                                                 delete-id="{{ $user->id }}"
+                                                open-modal="delete-modal"
                                             >
                                                 <i class="fa-solid fa-trash"></i>
                                             </a>
 
-                                            <form id="formdelete-{{ $user->id }}" action="" method="POST">
+                                            <form id="formdelete-{{ $user->id }}" action="{{ route('users.destroy',$user->id) }}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
                                             </form>
@@ -69,20 +70,6 @@
                                             <a href="{{ route('users.edit',$user->id) }}" class="">
                                                 <i class="fa-solid fa-pen"></i>
                                             </a>
-                                            
-                                            <a
-                                                href="javascript:void(0);"
-                                                class="delete-btn text-rose-500"
-                                                delete-name="{{ $user->firstname }} {{ $user->lastname }}"
-                                                delete-id="{{ $user->id }}"
-                                            >
-                                                <i class="fa-solid fa-trash"></i>
-                                            </a>
-
-                                            <form id="formdelete-{{ $user->id }}" action="" method="POST">
-                                                @csrf
-                                                @method('DELETE')
-                                            </form>
                                         </div>
                                     @endif
                                 @endif
@@ -100,9 +87,9 @@
                 <img src="{{ asset('asset/imgs/backgrounds/trash.svg') }}" class="w-52 mx-auto" />
             </div>
             <div class="my-10 text-center">
-                <h4 id="delete-modal-header"></h4>
-                <div class="w-full md:w-1/2 mx-auto mt-10 flex items-center gap-2">
-                    <a id="modal-cancle-btn" href="javascript:void(0);" class="btn-outline-dark">Cancle</a>
+                <p>Are you sure you want to delete <span id="delete-modal-header" class="font-bold" ></span> ?</p>
+                <div class="mt-10 flex justify-center items-center gap-2">
+                    <a close-modal="delete-modal" href="javascript:void(0);" class="btn-outline-dark">Cancle</a>
                     <a id="modal-delete-btn" href="javascript:void(0);" class="btn-red">Delete</a>
                 </div>
             </div>
@@ -117,26 +104,32 @@
 
 @section('scripts')
 <script type="text/javascript">
-    let deleteBtns = document.querySelectorAll('.delete-btn');
-    let deleteModal = document.getElementById('delete-modal');
-    let modalCancleBtn = document.getElementById('modal-cancle-btn');
-    let modalDeleteBtn = document.getElementById('modal-delete-btn');
-    let deleteModalHeader = document.getElementById('delete-modal-header');
-    let deleteId;
-    deleteBtns.forEach(deleteBtn => {
-        deleteBtn.addEventListener('click',function(){
-            deleteModal.classList.remove('hidden');
-            deleteId = deleteBtn.getAttribute("delete-id");
-            deleteModalHeader.innerHTML = "Are you sure, you want to delete "+deleteBtn.getAttribute("delete-name")+" ?";
+    let openModals = document.querySelectorAll("[open-modal]");
+    let closeModals = document.querySelectorAll("[close-modal]");
+    
+    openModals.forEach(openModal => {
+        openModal.addEventListener('click',()=>{
+            let target = openModal.getAttribute('open-modal');
+            document.getElementById(target).classList.remove('hidden');
+
+            if(openModal.getAttribute('open-modal') == 'delete-modal'){
+                let modalDeleteBtn = document.getElementById('modal-delete-btn');
+                let deleteModalHeader = document.getElementById('delete-modal-header');
+                let deleteId;
+                deleteId = openModal.getAttribute("delete-id");
+                deleteModalHeader.innerHTML = openModal.getAttribute("delete-name");
+                modalDeleteBtn.addEventListener('click',function(){
+                    document.getElementById('formdelete-'+deleteId).submit();
+                });
+            }
         });
     });
 
-    modalCancleBtn.addEventListener('click',function(){
-        deleteModal.classList.add('hidden');
-    })
-
-    modalDeleteBtn.addEventListener('click',function(){
-        document.getElementById('formdelete-'+deleteId).submit();
+    closeModals.forEach(closeModal => {
+        closeModal.addEventListener('click',()=>{
+            let target = closeModal.getAttribute('close-modal');
+            document.getElementById(target).classList.add('hidden');
+        });
     });
 </script>
 @endsection

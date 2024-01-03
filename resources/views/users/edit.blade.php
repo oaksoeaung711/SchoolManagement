@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('content')
-<div class="max-w-6xl shadow-lg shadow-slate-300 rounded-xl p-5 flex flex-col gap-y-5 md:flex-row md:gap-y-0">
+<div class="max-w-6xl shadow-lg shadow-slate-300 bg-slate-50 rounded-xl p-5 flex flex-col gap-y-5 md:flex-row md:gap-y-0">
     <div class="w-full md:w-1/2">
         <div class="w-44 h-44 rounded-full overflow-hidden mx-auto mt-5">
             @if($user->image === null)

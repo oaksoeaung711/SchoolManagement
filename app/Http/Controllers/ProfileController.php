@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\profile\ProfileImageUpdateRequest;
-use App\Http\Requests\profile\ProfilePasswordUpdateRequest;
+use App\Http\Requests\profile\UpdateProfileImageRequest;
+use App\Http\Requests\profile\UpdateProfilePasswordRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -22,7 +22,7 @@ class ProfileController extends Controller
         return view('profile.passwordedit');
     }
 
-    public function passwordUpdate(ProfilePasswordUpdateRequest $request)
+    public function passwordUpdate(UpdateProfilePasswordRequest $request)
     {
         $oldPassword = $request->old_password;
         if(Hash::check($oldPassword,Auth::user()->password)){
@@ -41,7 +41,7 @@ class ProfileController extends Controller
         return view('profile.imageedit');
     }
 
-    public function imageUpdate(ProfileImageUpdateRequest $request)
+    public function imageUpdate(UpdateProfileImageRequest $request)
     {
         if($request->hasFile('image')){
             if(!empty(Auth::user()->image)){

@@ -37,7 +37,7 @@
                         <x-input type="password" name="confirm_password" icon="key" label="Confirm Password" />
     
                         <div>
-                            <button type="submit" class="btn-dark">Register</button>
+                            <button type="submit" class="w-full btn-dark">Register</button>
                         </div>
                     </form>
                 </div>

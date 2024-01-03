@@ -10,12 +10,12 @@
 </head>
 <body>
     <div class="h-screen flex items-center justify-center">
-        <div class="min-w-[400px] md:max-w-[1200px] flex border rounded-lg shadow-xl bg-gray-50 pt-20">
+        <div class="min-w-[400px] md:max-w-[1200px] flex border rounded-lg shadow-xl bg-gray-50 pt-10">
             <div class="hidden md:flex items-end flex-shrink-0 w-1/2">
                 <img src="{{ asset('asset/imgs/backgrounds/swing.svg') }}" class="" />
             </div>
     
-            <div class="w-full md:w-1/2 space-y-10 p-5 md:p-10">
+            <div class="w-full md:w-1/2 space-y-10 p-5">
                 <div class="">
                     <h3>Login</h3>
                 </div>
@@ -28,7 +28,7 @@
                         <x-input type="password" name="password" icon="key" placeholder="Password" />
     
                         <div>
-                            <button type="submit" class="btn-dark">LOGIN</button>
+                            <button type="submit" class="w-full btn-dark">LOGIN</button>
                         </div>
                     </form>
                 </div>

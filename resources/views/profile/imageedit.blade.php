@@ -23,8 +23,8 @@
                 <p class="ml-1 mt-1 text-red-500">{{ $message }}</p>
             @enderror
             <div class="flex gap-2 mt-10">
-                <a href="{{ route('profile.index') }}" class="btn-outline-dark">Cancle</a>
-                <button class="btn-dark">Upload</button>
+                <a href="{{ route('profile.index') }}" class="w-full flex justify-center btn-outline-dark">Cancle</a>
+                <button class="w-full btn-dark">Upload</button>
             </div>
         </form>
     </div>
@@ -35,8 +35,6 @@
     function fileview(event){
         const getinput = event.target;
         const getpreview = document.getElementById('preview');
-        // var filereader = new FileReader();
-        // filereader.readAsDataURL(getinput.files[0]);
 
         getpreview.src = URL.createObjectURL(getinput.files[0]);
     }

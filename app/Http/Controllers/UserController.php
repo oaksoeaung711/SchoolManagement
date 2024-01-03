@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\user\UserUpdateRequest;
+use App\Http\Requests\user\UpdateUserRequest;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -31,7 +32,7 @@ class UserController extends Controller
         return view('users.edit',compact('user','roles'));
     }
 
-    public function update(UserUpdateRequest $request, User $user)
+    public function update(UpdateUserRequest $request, User $user)
     {
         $roles = collect($request->roles);
         $user->firstname = $request->firstname;
@@ -62,6 +63,19 @@ class UserController extends Controller
             return redirect()->route('users.index');
         }elseif(empty($request->roles) && (Auth::user()->roles->contains(1) || Auth::user()->roles->contains(2))){
             $user->roles()->sync($request->roles);
+            return redirect()->route('users.index');
+        }else{
+            return redirect()->route('users.index');
+        }
+    }
+
+    public function destroy(User $user)
+    {
+        if(Auth::user()->roles->contains(1)){
+            if(!empty($user->image)){
+                Storage::disk('profile')->deleteDirectory(explode('@',$user->email)[0]);
+            }
+            $user->delete();
             return redirect()->route('users.index');
         }else{
             return redirect()->route('users.index');

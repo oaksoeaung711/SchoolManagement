@@ -24,16 +24,16 @@ let expandTags = document.querySelectorAll('[data-toggle=expand]');
 expandTags.forEach(tag => {
     if(tag.classList.contains('expand')){
         tag.nextElementSibling.style.height = tag.nextElementSibling.scrollHeight+"px";
-        tag.parentElement.classList.add('bg-gray-50');
+        tag.parentElement.classList.add('bg-slate-200');
     }
     tag.addEventListener('click',function(){
         tag.classList.toggle('expand');
         if(tag.classList.contains('expand')){
             tag.nextElementSibling.style.height = tag.nextElementSibling.scrollHeight+"px";
-            tag.parentElement.classList.add('bg-gray-50');
+            tag.parentElement.classList.add('bg-slate-200');
         }else{
             tag.nextElementSibling.style.height = 0;
-            tag.parentElement.classList.remove('bg-gray-50');
+            tag.parentElement.classList.remove('bg-slate-200');
         }
     });
 });

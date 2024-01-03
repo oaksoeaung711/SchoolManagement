@@ -67,5 +67,7 @@ class Kernel extends HttpKernel
         'check.user.status' => \App\Http\Middleware\CheckUserStatus::class,
         'prevent.back.login.and.register' => \App\Http\Middleware\PreventBackLoginAndRegister::class,
         'prevent.user.update' => \App\Http\Middleware\PreventUserUpdate::class,
+        'timetable.manage' => \App\Http\Middleware\TimetableManage::class,
+        'teacher.manage' => \App\Http\Middleware\TeacherManage::class,
     ];
 }

@@ -21,6 +21,11 @@
         >
             <i class="fa-solid fa-{{ $icon }}"></i>
         </div>
+        <style>
+            input[type="time"]::-webkit-calendar-picker-indicator {
+                   display: none;
+                }
+        </style>
         <input
             type="{{ $type }}"
             name="{{ $name }}"
@@ -29,7 +34,7 @@
             value="{{ old($name,$value) }}"
             autocomplete="off"
             @class([
-                "form-input bg-gray-50 border border-gray-300 text-gray-700 font-medium text-sm focus:outline-none block w-full $rounded ps-10 p-2.5",
+                "form-input bg-gray-50 border border-gray-300 text-gray-700 font-medium text-sm focus:outline-none block w-full $rounded ps-10 p-2.5 appearance-none",
                 "focus:border-gray-600" => !$errors->has($name),
                 "border-red-500" => $errors->has($name),
             ])

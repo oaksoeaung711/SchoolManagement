@@ -5,15 +5,15 @@
     <h4 class="my-5">Roles</h4>
 
     <div class="mt-10 w-full md:w-4/5 overflow-x-auto">
-        <table class="text-sm text-left rtl:text-right overflow-hidden">
+        <table class="text-sm text-left rtl:text-right overflow-hidden bg-slate-50">
             <thead class="bg-slate-800 text-slate-50 text-xs uppercase">
                 <tr class="">
-                    <th class="px-6 py-3 rounded-s-lg">No</th>
+                    <th class="px-6 py-3">No</th>
                     <th class="px-6 py-3">Name</th>
                         @if(Auth::user()->roles->contains(1))
                             <th class="px-6 py-3">Status</th>
                         @endif
-                    <th class="px-6 py-3 rounded-e-lg">Description</th>
+                    <th class="px-6 py-3">Description</th>
                 </tr>
             </thead>
             <tbody>
